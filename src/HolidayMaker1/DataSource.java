@@ -9,8 +9,6 @@ public class DataSource {
 
         public DataSource() {
 
-
-            // in this case the database is namned booking.db
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:HolidayMaker.db");
             } catch (SQLException throwables) {
