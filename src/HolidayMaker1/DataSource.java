@@ -8,7 +8,7 @@ public class DataSource {
         private Connection conn = null;
 
         public DataSource() {
-            
+
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:HolidayMaker.db");
             } catch (SQLException throwables) {
