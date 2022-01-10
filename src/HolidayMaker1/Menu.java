@@ -240,7 +240,7 @@ public class Menu {
         while (runReservation) {
 
 
-            System.out.println("Search for availible rooms and book them");
+            System.out.println("Search for available rooms and book them");
             System.out.println("Which Hotel do you want to search for rooms? Please enter Hotel ID");
             System.out.println("Here is a list of the hotels:");
             ArrayList<Hotel> hotels = ds.getAllHotels();
