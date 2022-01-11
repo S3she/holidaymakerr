@@ -2,13 +2,10 @@ package HolidayMaker1;
 
 import java.util.Scanner;
 
-public class Output {
+public class Extras {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    /**
-     threadSleep() pauses the program for 2 seconds
-     */
 
     public static void threadSleep() {
         try {
@@ -18,17 +15,14 @@ public class Output {
         }
     }
 
-    /**
-     * emptyScreen() prints ut 50 blank lines.
-     */
     public static void emptyScreen() {
         System.out.println("\n".repeat(50));
 
     }
 
-
     public static void pause () {
         System.out.println("Press any key to go back to main menu");
         String menuOption = scanner.nextLine();
     }
+
 }
