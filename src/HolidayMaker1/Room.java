@@ -14,7 +14,6 @@ public class Room {
         this.room_Amount = room_Amount;
     }
 
-
     @Override
     public String toString() {
         return "Room{" +

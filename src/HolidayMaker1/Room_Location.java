@@ -16,7 +16,6 @@ public class Room_Location {
         this.room_Number = room_Number;
     }
 
-
     @Override
     public String toString() {
         return "Room number " + room_Number;
