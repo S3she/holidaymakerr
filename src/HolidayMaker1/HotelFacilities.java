@@ -10,13 +10,6 @@ public class HotelFacilities {
 
     }
 
-    public String getHotel_facilities_name() {
-        return hotel_facilities_name;
-    }
-
-    public int getHotel_Facilities_ID() {
-        return hotel_Facilities_ID;
-    }
 
     @Override
     public String toString() {

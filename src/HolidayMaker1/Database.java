@@ -33,11 +33,11 @@ public class Database {
                 String dateOfBirth = resultSet.getString("Date_Of_Birth");
                 int guestID = resultSet.getInt("Guest_ID");
                 int reservationID = resultSet.getInt("Reservation_ID");
-                int company_ID = resultSet.getInt("Company_ID");
+                int group_ID = resultSet.getInt("Group_ID");
 
 
                 guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth, guestID,
-                        reservationID, company_ID));
+                        reservationID, group_ID));
 
             }
 
@@ -199,15 +199,15 @@ public class Database {
 
     }
 
-    public void addGuestToCompany(int addCompany_ID, int addGuestID) {
+    public void addGuestToGroup(int addGroup_ID, int addGuestID) {
 
-        String query = "UPDATE guest SET Company_ID = ? WHERE Guest_ID = ?";
+        String query = "UPDATE guest SET Group_ID = ? WHERE Guest_ID = ?";
 
 
         try {
             PreparedStatement statement = conn.prepareStatement(query);
 
-            statement.setInt(1, addCompany_ID);
+            statement.setInt(1, addGroup_ID);
             statement.setInt(2, addGuestID);
 
             statement.executeUpdate();
@@ -343,10 +343,10 @@ public class Database {
                 String dateOfBirth = resultSet.getString("Date_Of_Birth");
                 int guestID = resultSet.getInt("Guest_ID");
                 int reservationID = resultSet.getInt("Reservation_ID");
-                int company_ID = resultSet.getInt("Company_ID");
+                int group_ID = resultSet.getInt("Group_ID");
 
 
-                guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth, guestID, reservationID, company_ID));
+                guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth, guestID, reservationID, group_ID));
 
             }
 
@@ -412,9 +412,9 @@ public class Database {
         }
     }
 
-    public void getCompanyID() {
+    public void getGroupID() {
 
-        String query = "SELECT MAX (Company_ID) AS 'maxCompany' FROM guest WHERE Company_ID IS NOT NULL";
+        String query = "SELECT MAX (Group_ID) AS 'maxGroup' FROM guest WHERE Group_ID IS NOT NULL";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -422,10 +422,10 @@ public class Database {
 
 
             while (resultSet.next()) {
-                int company_ID = resultSet.getInt("maxCompany");
+                int group_ID = resultSet.getInt("maxCompany");
 
 
-                System.out.println("Next free company ID is " + (company_ID + 1));
+                System.out.println("Next free group ID is " + (group_ID + 1));
             }
 
 
@@ -434,7 +434,7 @@ public class Database {
         }
     }
 
-    public ArrayList<Room_Location> getFreeRooms(String check_Out, String check_In, int bookHotel_ID, int companyAmount) {
+    public ArrayList<Room_Location> getFreeRooms(String check_Out, String check_In, int bookHotel_ID, int groupAmount) {
 
         ArrayList<Room_Location> freeRooms = new ArrayList<>();
 
@@ -443,17 +443,13 @@ public class Database {
                 "reservation.Check_In <= ? WHERE room_location.Hotel_ID = ? and reservation.Reservation_ID IS NULL AND (SELECT room.Room_Capacity FROM room WHERE room_location.Room_ID = " +
                 "room.Room_ID AND room.Room_Capacity >= ?)";
 
-        //   String query2 = "SELECT room_location.room_Number FROM room_location " +
-        //         "LEFT JOIN reservation ON room_location.Room_Number = reservation.Room_Number AND " +
-        //       "reservation.Check_Out >= ? AND reservation.Check_In <= ? WHERE room_location.Hotel_ID = ? AND room_location.Room_ID = ? and reservation.Reservation_ID IS NULL";
-
-
+        
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, check_In);
             preparedStatement.setString(2, check_Out);
             preparedStatement.setInt(3, bookHotel_ID);
-            preparedStatement.setInt(4, companyAmount);
+            preparedStatement.setInt(4, groupAmount);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -474,16 +470,16 @@ public class Database {
     }
 
 
-    public ArrayList<Guest> getGuestByCompany_ID(int company_ID) {
+    public ArrayList<Guest> getGuestByGroup_ID(int group_ID) {
 
         int counter = 0;
 
         ArrayList<Guest> guests = new ArrayList<>();
-        String query = "SELECT First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth FROM guest WHERE Company_ID = ?";
+        String query = "SELECT First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth FROM guest WHERE Group_ID = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, company_ID);
+            preparedStatement.setInt(1, group_ID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
 
@@ -501,7 +497,7 @@ public class Database {
             }
 
             if (counter == 0) {
-                System.out.println("No one is registred on company with id " + company_ID);
+                System.out.println("No one is registred on company with id " + group_ID);
             }
 
 

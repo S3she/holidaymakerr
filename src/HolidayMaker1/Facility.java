@@ -16,25 +16,18 @@ public class Facility {
         return hotel_Facilities_ID;
     }
 
-    public void setHotel_Facilities_ID(int hotel_Facilities_ID) {
-        this.hotel_Facilities_ID = hotel_Facilities_ID;
-    }
 
     public String getFacility_Name() {
         return facility_Name;
     }
 
-    public void setFacility_Name(String facility_Name) {
-        this.facility_Name = facility_Name;
-    }
 
     public int getHotel_ID() {
         return hotel_ID;
     }
 
-    public void setHotel_ID(int hotel_ID) {
-        this.hotel_ID = hotel_ID;
-    }
+
+
 
     @Override
     public String toString() {
