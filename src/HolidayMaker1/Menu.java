@@ -16,7 +16,6 @@ public class Menu {
         this.option = option;
         mainMenu();
 
-
     }
 
     private void mainMenu() {
@@ -116,8 +115,6 @@ public class Menu {
         } else if (option == 2) {
 
             addGuestToGroupWithID();
-
-
         }
 
         else {
@@ -156,7 +153,6 @@ public class Menu {
         Extras.threadSleep();
         Extras.emptyScreen();
         mainMenu();
-
 
     }
 
@@ -201,7 +197,6 @@ public class Menu {
 
     }
 
-
     private void showGuestsByLastName() {
 
         System.out.println("Enter the last name you want to search for");
@@ -232,7 +227,6 @@ public class Menu {
         int room_Number = Integer.parseInt(scanner.nextLine());
 
         return db.createReservation(new Reservation(check_In, check_Out, bookRoomSize, bookHotel_ID, room_Number));
-
 
     }
 
@@ -326,8 +320,6 @@ public class Menu {
                 case 4:
                     bookHotelRoom();
 
-
-
             }
 
         }
@@ -354,7 +346,6 @@ public class Menu {
 
         }
 
-
         bookHotel_ID = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter a date for CHECK IN in this format: YY-MM-DD");
@@ -364,7 +355,6 @@ public class Menu {
         check_Out = scanner.nextLine();
         System.out.println("How many people is booking?");
         guestAmount = Integer.parseInt(scanner.nextLine());
-
 
         ArrayList<Room_Location> freeRoom = db.getFreeRooms(check_Out, check_In, bookHotel_ID, guestAmount);
 
@@ -415,9 +405,6 @@ public class Menu {
                             searchGuestFromReservation();
                         }
 
-
-
-
                     } else {
                         mainMenu();
                     }
@@ -431,39 +418,32 @@ public class Menu {
                 default:
                     break;
 
-
             }
 
 
         }
     }
 
-
     private int createGuest() {
 
 
         String firstName;
-        System.out.println("Please enter first name for the guest");
+        System.out.println("Please enter first name of the guest");
         firstName = scanner.nextLine();
         String lastName;
-        System.out.println("Enter last name for the guest");
+        System.out.println("Enter last name of the guest");
         lastName = scanner.nextLine();
         String phoneNumber;
-        System.out.println("Enter the phone number for the guest");
+        System.out.println("Enter the phone number of the guest");
         phoneNumber = scanner.nextLine();
         String emailAdress;
-        System.out.println("Enter the email adress for the guest");
+        System.out.println("Enter the email adress of the guest");
         emailAdress = scanner.nextLine();
         String dateOfBirth;
-        System.out.println("Enter the birth date for the guest");
+        System.out.println("Enter the birth date of the guest");
         dateOfBirth = scanner.nextLine();
         System.out.println("Guest is successfully added!");
         return db.createGuest(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth));
-
-
-
-
-
     }
 
     public void searchGuestFromReservation() {
@@ -477,7 +457,7 @@ public class Menu {
 
         }
         if (guests.size() == 0) {
-            System.out.println("No guest with that name found");
+            System.out.println("No Guest Was found.");
         }
 
 
