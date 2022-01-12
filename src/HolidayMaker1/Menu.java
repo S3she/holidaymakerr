@@ -245,11 +245,6 @@ public class Menu {
     private void searchFreeRoomsAndFacilitys() {
 
         boolean runReservation = true;
-        int bookHotel_ID;
-        int reservationChoice = 0;
-        String check_In;
-        String check_Out;
-        int companyAmount;
         int option;
 
 
