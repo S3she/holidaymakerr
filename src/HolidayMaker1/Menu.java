@@ -44,7 +44,7 @@ public class Menu {
 
                 case 1:
                     System.out.println("Guest created with ID = " + createGuest());
-                    System.out.println("Going back to main menu");
+                    System.out.println(" returning to the main menu");
                     Extras.threadSleep();
                     Extras.emptyScreen();
                     break;
@@ -64,7 +64,7 @@ public class Menu {
 
                 case 5:
 
-                    System.out.println("Please enter a company ID");
+                    System.out.println("Please enter a Group ID");
                     int group_ID = Integer.parseInt(scanner.nextLine());
                     db.getGuestByGroup_ID(group_ID);
                     Extras.pause();
@@ -125,8 +125,8 @@ public class Menu {
     }
 
     private void addGuestToGroup() {
-        System.out.println("Which company do you want to add to?");
-        System.out.println("Press 1 to see a the next free company id or press 2 to continue to add");
+        System.out.println("Which Group do you want to add to?");
+        System.out.println("Press 1 to see a the next free Group id or press 2 to continue to add");
         System.out.println("Press 3 to go back to main menu");
         int option = Integer.parseInt(scanner.nextLine());
 
@@ -152,12 +152,12 @@ public class Menu {
 
     private void addGuestToGroupWithID() {
 
-        System.out.println("Enter the company ID");
+        System.out.println("Enter the Group ID");
         int group_ID = Integer.parseInt(scanner.nextLine());
-        System.out.println("Which guest do you want to include in the company?");
+        System.out.println("Which guest do you want to include in the Group?");
         int addGuestID = Integer.parseInt(scanner.nextLine());
         db.addGuestToGroup(group_ID, addGuestID);
-        System.out.println("Guest with ID " + addGuestID + " added to company with ID " + group_ID);
+        System.out.println("Guest with ID " + addGuestID + " added to Group with ID " + group_ID);
         System.out.println("Going back to main menu");
         Extras.threadSleep();
         Extras.emptyScreen();
@@ -170,7 +170,7 @@ public class Menu {
 
         System.out.println("Which reservation do you want to add the guest to?");
         int reservationID = Integer.parseInt(scanner.nextLine());
-        System.out.println("Which guest do you want to book?");
+        System.out.println("Which guest do you want to book? insert Guest ID");
         int addGuestID = Integer.parseInt(scanner.nextLine());
 
         db.insertGuestToReservation(addGuestID, reservationID);
