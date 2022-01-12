@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Database {
 
         private Connection conn = null;
-
         public Database() {
 
             try {
@@ -41,7 +40,6 @@ public class Database {
 
             }
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +50,6 @@ public class Database {
 
         int incrementID = 0;
         String query = "INSERT INTO guest (First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth) VALUES(?, ?, ?, ?, ?)";
-
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -108,8 +105,7 @@ public class Database {
         int counter = 0;
 
 
-        String query = "SELECT hotel_facilities.Hotel_Facitilies_Name, " +
-                "facility.Facility_Name, hotel.Hotel_Name, hotel.Hotel_ID FROM hotel_facilities INNER JOIN facility ON " +
+        String query = "SELECT hotel_facilities.Hotel_Facitilies_Name, " + "facility.Facility_Name, hotel.Hotel_Name, hotel.Hotel_ID FROM hotel_facilities INNER JOIN facility ON " +
                 "hotel_facilities.Hotel_Facilities_ID = facility.Hotel_Facilities_ID INNER JOIN hotel ON hotel.Hotel_ID = facility.Hotel_ID WHERE hotel.Hotel_ID = ?";
 
         try {
@@ -140,7 +136,6 @@ public class Database {
 
     }
 
-
     public void getAllReservations(String lastName) {
         int counter = 0;
         String query = "SELECT guest.First_Name, guest.Last_Name, reservation.* FROM guest INNER JOIN reservation ON guest.Reservation_ID = reservation.Reservation_ID WHERE guest.Last_Name LIKE" +
@@ -163,10 +158,8 @@ public class Database {
                 int guest_ID = resultSet.getInt("Guest_ID");
                 int room_Number = resultSet.getInt("Room_Number");
 
-                System.out.println("First name " + first_Name + " , " + "Last name: " + last_Name + " , " + "Reservation ID: " + reservation_ID + " , " +
-                        "Check in: " + check_In + " , " + "Check out: " + " , " + "Room ID: " + room_ID);
-                System.out.println("Hotel ID " + hotel_ID + " , " +
-                        "Guest ID: " + guest_ID + " , " + "Room number: " + room_Number);
+                System.out.println("First name " + first_Name + " , " + "Last name: " + last_Name + " , " + "Reservation ID: " + reservation_ID + " , " + "Check in: " + check_In + " , " + "Check out: " + " , " + "Room ID: " + room_ID);
+                System.out.println("Hotel ID " + hotel_ID + " , " + "Guest ID: " + guest_ID + " , " + "Room number: " + room_Number);
 
             }
 
@@ -178,7 +171,6 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void addGuestToReservation(int addReservation_ID, int addGuestID) {
@@ -217,7 +209,6 @@ public class Database {
 
     }
 
-
     public void insertGuestToReservation(int addGuestID, int addReservation_ID) {
 
         String query = "UPDATE reservation SET Guest_ID = ? WHERE Reservation_ID = ?";
@@ -236,11 +227,9 @@ public class Database {
 
     }
 
-
     public void cancelReservation(int addReservation_ID) {
 
-        String query = "UPDATE reservation SET Check_In = NULL, Check_Out = NULL, Room_ID = NULL, Hotel_ID = NULL, Number_Of_Guests = NULL" +
-                ", Guest_ID = NULL, Room_Number = NULL WHERE Reservation_ID = ?";
+        String query = "UPDATE reservation SET Check_In = NULL, Check_Out = NULL, Room_ID = NULL, Hotel_ID = NULL, Number_Of_Guests = NULL" + ", Guest_ID = NULL, Room_Number = NULL WHERE Reservation_ID = ?";
 
 
         try {
@@ -252,8 +241,6 @@ public class Database {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public ArrayList<Guest> getGuestByReservation(int reservation_ID) {
@@ -274,11 +261,9 @@ public class Database {
                 String emailAdress = resultSet.getString("Email_Adress");
                 String dateOfBirth = resultSet.getString("Date_Of_Birth");
 
-
                 guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth));
 
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -290,9 +275,7 @@ public class Database {
     public int createReservation(Reservation reservation) {
 
         int incrementID = 0;
-        String query = "INSERT INTO reservation (Check_In, Check_Out, Room_ID, Hotel_ID, " +
-                "Room_Number)\n" +
-                "VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reservation (Check_In, Check_Out, Room_ID, Hotel_ID, " + "Room_Number)\n" + "VALUES (?, ?, ?, ?, ?)";
 
 
         try {
@@ -317,8 +300,6 @@ public class Database {
         return incrementID;
 
     }
-
-
 
 
     public ArrayList<Guest> getGuestByLastName(String inputLastName) {
@@ -349,7 +330,6 @@ public class Database {
                 guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth, guestID, reservationID, group_ID));
 
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -422,7 +402,7 @@ public class Database {
 
 
             while (resultSet.next()) {
-                int group_ID = resultSet.getInt("maxCompany");
+                int group_ID = resultSet.getInt("maxGroup");
 
 
                 System.out.println("Next free group ID is " + (group_ID + 1));
@@ -497,7 +477,7 @@ public class Database {
             }
 
             if (counter == 0) {
-                System.out.println("No one is registred on company with id " + group_ID);
+                System.out.println("No one is registred on guest with id " + group_ID);
             }
 
 

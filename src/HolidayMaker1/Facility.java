@@ -27,8 +27,6 @@ public class Facility {
     }
 
 
-
-
     @Override
     public String toString() {
         return "Facility{" +

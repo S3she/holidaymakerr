@@ -19,7 +19,6 @@ public class Extras {
         String menuOption = scanner.nextLine();
     }
 
-
     public static void emptyScreen() {
         System.out.println("\n".repeat(50));
 
