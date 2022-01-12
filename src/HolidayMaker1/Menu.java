@@ -76,7 +76,7 @@ public class Menu {
                     break;
 
                 case 7:
-                    System.out.println("Welcome back, exiting the program");
+                    System.out.println("Exiting the program");
                     runMenu = false;
                     break;
 
@@ -90,36 +90,11 @@ public class Menu {
 
     }
 
-
-    private void showAllGuest() {
-        ArrayList<Guest> guests = db.getAllGuests();
-        for (Guest guest : guests) {
-
-            System.out.println(guest);
-        }
-        Extras.threadSleep();
-    }
-
-
     private void showAllHotels() {
         ArrayList<Hotel> hotels = db.getAllHotels();
         for (Hotel hotel : hotels) {
             System.out.println(hotel);
         }
-
-
-    }
-
-    private void addPeopleToReservation() {
-        System.out.println("Which reservation do you want to add to?");
-        int reservationID = Integer.parseInt(scanner.nextLine());
-        System.out.println("Which guest do you want to include in the reservation?");
-        int addGuestID = Integer.parseInt(scanner.nextLine());
-        db.addGuestToReservation(reservationID, addGuestID);
-        System.out.println("Guest with ID " + addGuestID + " added to reservation with ID " + reservationID);
-        System.out.println("Going back to main menu");
-        Extras.threadSleep();
-        Extras.emptyScreen();
 
 
     }
@@ -227,19 +202,6 @@ public class Menu {
     }
 
 
-    private void showGuestsByReservation() {
-
-        System.out.println("Please enter a reservation id");
-        int reservation_ID;
-        reservation_ID = Integer.parseInt(scanner.nextLine());
-        ArrayList<Guest> guests = db.getGuestByReservation(reservation_ID);
-        System.out.println("People in reservation with reservation ID " + reservation_ID + " :");
-        for (Guest guest : guests) {
-            System.out.println(guest);
-        }
-
-    }
-
     private void showGuestsByLastName() {
 
         System.out.println("Enter the last name you want to search for");
@@ -272,43 +234,6 @@ public class Menu {
         return db.createReservation(new Reservation(check_In, check_Out, bookRoomSize, bookHotel_ID, room_Number));
 
 
-    }
-
-    private void manageFacilities() {
-
-        boolean runManageFacilities = true;
-        option = Integer.parseInt(scanner.nextLine());
-
-        switch (option) {
-
-            case 1:
-                System.out.println("THIS IS THE HOTELS: ");
-                showAllHotels();
-                System.out.println();
-                System.out.println("Please enter an hotel ID to see facilities");
-                int hotel_ID = Integer.parseInt(scanner.nextLine());
-                db.getAllFacilitys(hotel_ID);
-                System.out.println("Do you want to -  1 to add a facility or  2 to go back to main menu");
-                option = Integer.parseInt(scanner.nextLine());
-                if (option == 1) {
-                    addFacility();
-                    mainMenu();
-                    break;
-
-                } else if (option == 2) {
-                    Extras.threadSleep();
-                    Extras.emptyScreen();
-                    mainMenu();
-                    break;
-                }
-            case 2:
-                addFacility();
-                break;
-
-            default:
-                break;
-
-        }
     }
 
     private int addFacility() {
@@ -348,18 +273,18 @@ public class Menu {
         while (runReservation) {
 
 
-            System.out.println("1. Search facilities belonging to a hotel");
-            System.out.println("2. Add facilities to hotel");
-            System.out.println("3. Search for guests in a company");
-            System.out.println("4. Search for availible rooms and book them");
+            System.out.println("1. Do you want to - Search facilities belonging to a specific hotel?");
+            System.out.println("2. Do you want to - Add specific facilities to a hotel?");
+            System.out.println("3. Do you want to - Search for guests in a Group?");
+            System.out.println("4. Do you want to - Search for available rooms and book a room?");
             option = Integer.parseInt(scanner.nextLine());
 
             switch (option) {
 
                 case 1:
 
-                    System.out.println("Which hotel do you want to search for facilities?");
-                    System.out.println("Here is a list of the hotels, please enter Hotel ID");
+                    System.out.println("Which is the hotel do you want to see available facilities in?");
+                    System.out.println("Here is a list of all the hotels, please enter Hotel ID");
                     ArrayList<Hotel> hotels = db.getAllHotels();
                     for (Hotel hotel : hotels) {
                         System.out.println(hotel);
@@ -368,12 +293,12 @@ public class Menu {
                     option = Integer.parseInt(scanner.nextLine());
 
                     db.getAllFacilitys(option);
-                    System.out.println("Press 1 to go to booking 2 to add facility(s) or 3 to get back to main menu");
+                    System.out.println("Press 1 to go to booking 2 to add facilities or 3 to get back to main menu");
                     option = Integer.parseInt(scanner.nextLine());
 
                     if (option == 1) {
                         Extras.emptyScreen();
-                        bookRoomHotel();
+                        bookHotelRoom();
                         break;
 
                     } else if (option == 2) {
@@ -399,7 +324,7 @@ public class Menu {
                     break;
 
                 case 4:
-                    bookRoomHotel();
+                    bookHotelRoom();
 
 
 
@@ -409,10 +334,7 @@ public class Menu {
     }
 
 
-
-
-
-    private void bookRoomHotel() {
+    private void bookHotelRoom() {
 
 
         int bookHotel_ID;
@@ -422,10 +344,10 @@ public class Menu {
         int guestAmount;
         int option;
 
-        System.out.println("Which Hotel do you want to search for rooms? Please enter Hotel ID");
+        System.out.println("Please enter Hotel ID to search for available rooms");
         System.out.println("");
 
-        System.out.println("Here is a list of the hotels:");
+        System.out.println("Here is a list of the available hotels:");
         ArrayList<Hotel> hotels = db.getAllHotels();
         for (Hotel hotel : hotels) {
             System.out.println(hotel);
@@ -435,18 +357,18 @@ public class Menu {
 
         bookHotel_ID = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("When do you want to check in? Please enter a date in this format: YY-MM-DD");
-        System.out.println("Please remember, at the moment the hotels are only bookable between 220601 - 220731");
+        System.out.println("Enter a date for CHECK IN in this format: YY-MM-DD");
+        System.out.println("The rooms are bookable: 220601 - 220731");
         check_In = scanner.nextLine();
-        System.out.println("When do you want to check out? Please enter a date in this format: YY-MM-DD");
+        System.out.println(" Enter a date for CHECK OUT in this format: YY-MM-DD ");
         check_Out = scanner.nextLine();
-        System.out.println("How many people are in the Group of choice?");
+        System.out.println("How many people is booking?");
         guestAmount = Integer.parseInt(scanner.nextLine());
 
 
         ArrayList<Room_Location> freeRoom = db.getFreeRooms(check_Out, check_In, bookHotel_ID, guestAmount);
 
-        System.out.println("Here is a list of free rooms with capacity to house the company");
+        System.out.println("Here is a list of free rooms with capacity to house the Group of choice");
 
         for (Room_Location location : freeRoom) {
             System.out.println(location);
@@ -454,7 +376,7 @@ public class Menu {
         }
 
         if (freeRoom.size() == 0) {
-            System.out.println("No free rooms");
+            System.out.println("No free rooms available");
             System.out.println("Please do another search");
             Extras.threadSleep();
             Extras.emptyScreen();
