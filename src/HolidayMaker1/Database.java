@@ -15,37 +15,6 @@ public class Database {
             }
         }
 
-    public ArrayList<Guest> getAllGuests() {
-
-        ArrayList<Guest> guests = new ArrayList<>();
-        String query = "SELECT * FROM guest";
-
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String firstName = resultSet.getString("First_Name");
-                String lastName = resultSet.getString("Last_Name");
-                String phoneNumber = resultSet.getString("Phone_Number");
-                String emailAdress = resultSet.getString("Email_Adress");
-                String dateOfBirth = resultSet.getString("Date_Of_Birth");
-                int guestID = resultSet.getInt("Guest_ID");
-                int reservationID = resultSet.getInt("Reservation_ID");
-                int group_ID = resultSet.getInt("Group_ID");
-
-
-                guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth, guestID,
-                        reservationID, group_ID));
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return guests;
-    }
-
     public int createGuest(Guest newGuest) {
 
         int incrementID = 0;
@@ -243,35 +212,6 @@ public class Database {
         }
     }
 
-    public ArrayList<Guest> getGuestByReservation(int reservation_ID) {
-
-        ArrayList<Guest> guests = new ArrayList<>();
-        String query = "SELECT First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth FROM guest WHERE Reservation_ID = ?";
-
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, reservation_ID);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-
-            while (resultSet.next()) {
-                String firstName = resultSet.getString("First_Name");
-                String lastName = resultSet.getString("Last_Name");
-                String phoneNumber = resultSet.getString("Phone_Number");
-                String emailAdress = resultSet.getString("Email_Adress");
-                String dateOfBirth = resultSet.getString("Date_Of_Birth");
-
-                guests.add(new Guest(firstName, lastName, phoneNumber, emailAdress, dateOfBirth));
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return guests;
-    }
-
-
     public int createReservation(Reservation reservation) {
 
         int incrementID = 0;
@@ -303,8 +243,6 @@ public class Database {
 
 
     public ArrayList<Guest> getGuestByLastName(String inputLastName) {
-
-        int counter = 0;
 
         ArrayList<Guest> guests = new ArrayList<>();
 
@@ -362,34 +300,6 @@ public class Database {
         }
         return incrementID;
 
-    }
-
-    public void getGuestBy(int reservation_ID) {
-
-        String query = "SELECT First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth FROM guest WHERE Reservation_ID = ?";
-
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, reservation_ID);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            System.out.println("Guest in reservation with ID " + reservation_ID);
-
-            while (resultSet.next()) {
-                String firstName = resultSet.getString("First_Name");
-                String lastName = resultSet.getString("Last_Name");
-                String phoneNumber = resultSet.getString("Phone_Number");
-                String emailAdress = resultSet.getString("Email_Adress");
-                String dateOfBirth = resultSet.getString("Date_Of_Birth");
-
-                System.out.println("First name: " + firstName + " Last name: " + lastName + " Phone_Number: " + phoneNumber + " Email adress: " + emailAdress + " Date of birth: " + dateOfBirth);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
     }
 
     public void getGroupID() {

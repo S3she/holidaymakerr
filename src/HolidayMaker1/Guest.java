@@ -38,65 +38,22 @@ public class Guest {
         return first_Name;
     }
 
-    public void setFirst_Name(String first_Name) {
-        this.first_Name = first_Name;
-    }
-
     public String getLast_Name() {
         return last_Name;
-    }
-
-    public void setLast_Name(String last_Name) {
-        this.last_Name = last_Name;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getEmail_Adress() {
         return email_Adress;
-    }
-
-    public void setEmail_Adress(String email_Adress) {
-        this.email_Adress = email_Adress;
     }
 
     public String getDate_Of_Birth() {
         return date_Of_Birth;
     }
 
-    public void setDate_Of_Birth(String date_Of_Birth) {
-        this.date_Of_Birth = date_Of_Birth;
-    }
-
-    public int getGuest_ID() {
-        return guest_ID;
-    }
-
-    public void setGuest_ID(int guest_ID) {
-        this.guest_ID = guest_ID;
-    }
-
-    public int getReservation_ID() {
-        return reservation_ID;
-    }
-
-    public void setReservation_ID(int reservation_ID) {
-        this.reservation_ID = reservation_ID;
-    }
-
-    public int getGroup_ID() {
-        return group_ID;
-    }
-
-    public void setGroup_ID(int group_ID) {
-        this.group_ID = group_ID;
-    }
 
     @Override
     public String toString() {
