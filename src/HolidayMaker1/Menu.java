@@ -266,7 +266,7 @@ public class Menu {
 
     private int bookRoom(String check_In, String check_Out, int bookRoomSize, int bookHotel_ID) {
 
-        System.out.println("Which room number do you choose?");
+        System.out.println("Which room number are you interested in?");
         int room_Number = Integer.parseInt(scanner.nextLine());
 
         return db.createReservation(new Reservation(check_In, check_Out, bookRoomSize, bookHotel_ID, room_Number));
@@ -282,13 +282,13 @@ public class Menu {
         switch (option) {
 
             case 1:
-                System.out.println("Here is a list of the hotels: ");
+                System.out.println("THIS IS THE HOTELS: ");
                 showAllHotels();
                 System.out.println();
-                System.out.println("Please enter a hotel id to see facilities");
+                System.out.println("Please enter an hotel ID to see facilities");
                 int hotel_ID = Integer.parseInt(scanner.nextLine());
                 db.getAllFacilitys(hotel_ID);
-                System.out.println("Press 1 to add a facility or press 2 to go back to main menu");
+                System.out.println("Do you want to -  1 to add a facility or  2 to go back to main menu");
                 option = Integer.parseInt(scanner.nextLine());
                 if (option == 1) {
                     addFacility();
