@@ -49,7 +49,6 @@ public class Menu {
                     break;
 
                 case 2:
-
                     showGuestsByLastName();
                     break;
 
@@ -62,7 +61,6 @@ public class Menu {
                     break;
 
                 case 5:
-
                     System.out.println("Please enter a Group ID");
                     int group_ID = Integer.parseInt(scanner.nextLine());
                     db.getGuestByGroup_ID(group_ID);
@@ -86,15 +84,6 @@ public class Menu {
 
 
         }
-
-    }
-
-    private void showAllHotels() {
-        ArrayList<Hotel> hotels = db.getAllHotels();
-        for (Hotel hotel : hotels) {
-            System.out.println(hotel);
-        }
-
 
     }
 
