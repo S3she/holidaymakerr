@@ -1,0 +1,70 @@
+Registrera in kunden:
+
+INSERT INTO guest (First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth)
+VALUES ()
+
+Söka lediga rum:
+
+
+        String query = "SELECT room_location.room_Number FROM room_location +
+	LEFT JOIN reservation ON room_location.Room_Number = reservation.Room_Number +
+	and reservation.Check_Out >= '2022-06-25' AND reservation.Check_In <= '2022-07-18'
+	WHERE room_location.Hotel_ID = 2 AND room_location.Room_ID = 2
+        and reservation.Reservation_ID IS NULL"
+
+
+
+Se facilities:
+
+
+SELECT facility.Facility_Name AS 'Name of facility',
+       hotel_facilities.Hotel_Facitilies_Name AS 'Type of facility',
+       hotel.Hotel_Name AS 'Hotel name'
+  FROM facility
+       INNER JOIN
+       hotel ON facility.Hotel_ID = hotel.Hotel_ID
+       INNER JOIN
+       hotel_facilities ON facility.Hotel_Facilities_ID = hotel_facilities.Hotel_Facilities_ID
+ WHERE hotel.Hotel_ID = 1
+
+Lägga till facility:
+
+
+INSERT INTO facility (Hotel_Facilities_ID, Facility_Name, Hotel_ID)
+VALUES (1, 'Pub', 3)
+
+
+
+Boka hotell:
+
+INSERT INTO reservation (Check_In, Check_Out, Room_ID, Hotel_ID, Room_Number)
+VALUES ('2022-06-01', 2022-06-05', 2. 3, 2300)
+
+
+Lägg till gäster i reservation / Sällskap:
+
+Söka upp gäster och ta med reservations-id:
+
+SELECT * FROM guest;
+
+Uppdatera gäst med reservations_Id:
+
+UPDATE guest
+SET Reservation_ID = 50
+WHERE guest_ID = 104
+
+
+Avboka rum:
+
+UPDATE reservation
+SET Check_In = NULL, Check_Out = NULL, Room_ID = NULL, Hotel_ID = NULL, Number_Of_Guests = NULL, Guest_ID = NULL, Room_Number = NULL
+WHERE Reservation_ID = 50
+
+Beskriva ett sällskap:
+
+SELECT First_Name, Last_Name, Phone_Number, Email_Adress, Date_Of_Birth FROM guest
+WHERE Reservation_ID = 5
+
+
+
+
