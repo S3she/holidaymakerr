@@ -92,11 +92,11 @@ public class Database {
                 String facility_Name = resultSet.getString("Facility_Name");
                 String hotelName = resultSet.getString("Hotel_Name");
                 //  int hotel_ID = resultSet.getInt("Hotel_ID");
-                System.out.println("Facility name: " + facility_Name + "  " + "Type of facility: " + hotel_facilities_Name + " Belong to hotel: " + hotelName);
+                System.out.println("Facility name: " + facility_Name + "  " + "Type of facility: " + hotel_facilities_Name + " Belongs to hotel: " + hotelName);
 
             }
             if (counter == 0) {
-                System.out.println("The hotel dont have any facilites");
+                System.out.println("The hotel doesn't have any specific facilities");
             }
 
         } catch (SQLException e) {

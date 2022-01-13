@@ -251,7 +251,7 @@ public class Menu {
         while (runReservation) {
 
 
-            System.out.println("1. Do you want to - Search facilities belonging to a specific hotel?");
+            System.out.println("1. Do you want to - Search for facilities belonging to a specific hotel?");
             System.out.println("2. Do you want to - Add specific facilities to a hotel?");
             System.out.println("3. Do you want to - Search for guests in a Group?");
             System.out.println("4. Do you want to - Search for available rooms and book a room?");
